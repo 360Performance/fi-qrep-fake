@@ -1,0 +1,117 @@
+{
+    "name": "custom.remote.python.dbquery-demo",
+    "metricGroup": "tech.Generic.DBQuery",
+    "version": "0.1.0",
+    "type": "python",
+    "entity": "CUSTOM_DEVICE",
+    "technologies": [
+        "Custom SQL"
+    ],
+    "favicon": "",
+    "source": {
+        "package": "dbquery_extension",
+        "className": "CustomDBQueryPluginRemote",
+        "install_requires": [],
+        "activation": "Remote"
+    },
+    "properties": [
+        {
+            "key": "log_level",
+            "type": "Dropdown",
+            "dropdownValues": [
+                "INFO",
+                "DEBUG"
+            ],
+            "defaultValue": "INFO"
+        }
+    ],
+    "configUI": {
+        "displayName": "CAS QREP DB Query Plugin",
+        "properties": [
+            {
+                "key": "log_level",
+                "displayName": "Log level",
+                "displayOrder": 1
+            }
+        ]
+    },
+    "ui": {
+        "charts": [
+            {
+                "group": "Capture Event Count",
+                "title": "Capture Event Count",
+                "series": [
+                    {
+                        "key": "qrep.cas.capture.events.count",
+                        "displayname": "Capture event count",
+                        "seriestype": "bar",
+                        "color": "#ff0008",
+                        "mergeaggregation": "sum",
+                        "dimensions": [
+                            "severity"
+                        ],
+                        "stacked": true
+                    }
+                ]
+            },
+            {
+                "group": "Apply Event Count",
+                "title": "Apply Event Count",
+                "series": [
+                    {
+                        "key": "qrep.cas.apply.events.count",
+                        "displayname": "Apply event count",
+                        "seriestype": "bar",
+                        "color": "#00b33c",
+                        "mergeaggregation": "sum",
+                        "dimensions": [
+                            "severity"
+                        ],
+                        "stacked": true
+                    }
+                ]
+            }
+        ]
+    },
+    "metrics": [
+        {
+            "timeseries": {
+                "key": "qrep.cas.apply.events.count",
+                "unit": "Count",
+                "displayname": "Apply event count",
+                "aggregation": "SUM",
+                "mergeaggregation": "SUM",
+                "dimensions": [
+                    "severity"
+                ]
+            },
+            "entity": "CUSTOM_DEVICE"
+        },
+        {
+            "timeseries": {
+                "key": "qrep.cas.capture.events.count",
+                "unit": "Count",
+                "displayname": "Capture event count",
+                "aggregation": "SUM",
+                "mergeaggregation": "SUM",
+                "dimensions": [
+                    "severity"
+                ]
+            },
+            "entity": "CUSTOM_DEVICE"
+        },
+        {
+            "timeseries": {
+                "key": "qrep.cas.apply.queue.depth",
+                "unit": "Count",
+                "displayname": "Queue Depth",
+                "aggregation": "SUM",
+                "mergeaggregation": "SUM",
+                "dimensions": [
+                    "queue"
+                ]
+            },
+            "entity": "CUSTOM_DEVICE"
+        }
+    ]
+}
